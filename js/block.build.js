@@ -65,13 +65,102 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_static_block__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_static_block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__blocks_static_block__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_dynamic_block__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_dynamic_block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__blocks_dynamic_block__);
+
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    RichText = _wp$editor.RichText,
+    InspectorControls = _wp$editor.InspectorControls,
+    PanelColorSettings = _wp$editor.PanelColorSettings;
+
+
+registerBlockType('myguten-block/dynamic-custom-block', {
+    title: __('Dynamic Custom Block'),
+    icon: 'megaphone',
+    category: 'common',
+    attributes: {
+        fname: {
+            type: 'string',
+            default: ''
+        },
+        textColor: {
+            type: 'string',
+            default: ''
+        }
+    },
+    edit: function edit(props) {
+        var _props$attributes = props.attributes,
+            fname = _props$attributes.fname,
+            textColor = _props$attributes.textColor,
+            setAttributes = props.setAttributes;
+
+
+        return [wp.element.createElement(
+            InspectorControls,
+            null,
+            wp.element.createElement(PanelColorSettings, {
+                title: __('Text Color'),
+                initialOpen: true,
+                colorSettings: [{
+                    label: __(''),
+                    value: textColor,
+                    onChange: function onChange(value) {
+                        return setAttributes({
+                            textColor: value
+                        });
+                    }
+                }]
+            })
+        ), wp.element.createElement(RichText, {
+            tagName: 'p',
+            className: 'fname',
+            value: fname,
+            placeholder: __("Enter First Name"),
+            onChange: function onChange(value) {
+                return setAttributes({ fname: value });
+            },
+            style: { color: textColor }
+        })];
+    },
+    save: function save(props) {
+        var _props$attributes2 = props.attributes,
+            fname = _props$attributes2.fname,
+            textColor = _props$attributes2.textColor;
+
+        return wp.element.createElement(RichText.Content, {
+            tagName: 'p',
+            className: 'fname',
+            value: fname,
+            style: { color: textColor }
+        });
+    }
+});
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
 
-registerBlockType('myguten-block/custom-block', {
-	title: __('My Custom Block'),
+
+registerBlockType('myguten-block/static-custom-block', {
+	title: __('Static Custom Block'),
 	icon: 'megaphone',
 	category: 'common',
 	edit: function edit() {
