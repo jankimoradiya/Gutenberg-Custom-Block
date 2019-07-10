@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gutenberg Block: Static JSX Example
+ * Plugin Name: Gutenberg Blocks
  * Description: My Custom Gutenberg Block.
  * Author: Janki Moradiya
  * Version: 1.0.0
